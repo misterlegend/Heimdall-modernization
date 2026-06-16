@@ -1,7 +1,7 @@
 {
     "name": "heimdall",
-    "version": "1.0.0",
-    "description": "A Ghost Template",
+    "version": "1.0.1",
+    "description": "A Ghost Template - Modernized for v6",
     "repository": "https://github.com/xaes-dev/heimdall",
     "scripts": {
         "dev": "gulp",
@@ -27,9 +27,8 @@
         "posts_per_page": 12
     },
     "engines": {
-        "ghost": ">=4.0.0",
-        "ghost-api": "v4",
-        "node": "^14.13.1"
+        "ghost": ">=6.0.0",
+        "node": "^22.0.0"
     },
     "author": {
         "name": "Diego Balmaceda",
