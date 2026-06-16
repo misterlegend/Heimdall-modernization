@@ -59,8 +59,10 @@
                         </div>
                     {{/prev_post}}
                 </div>
-                {{! Comments (Disqus) - Go to partials/comments.hbs to view this partial. Remove the "!" to activate this partial}}
-                {{> "comments" shortname="anothersupersite" }}
+                
+                {{!-- Native Ghost Comments --}}
+                {{comments}}
+
             </article>
             <aside class="col-span-12 xl:col-span-4 mt-12 xl:mt-0">
                 <div class="space-y-12">
