@@ -32,6 +32,51 @@
 
         {{ghost_head}}
 
+        <style>
+            :root {
+                --primary-color: #fa6330;
+                --black-1: #111317;
+                --white-1: #f4f5f6;
+                --post-dark-overlay-up: rgba(17,19,23,0.65);
+                --post-dark-overlay-down: #111317;
+                --post-light-overlay-up: rgba(244,245,246,0.65);
+                --post-light-overlay-down: #f4f5f6;
+                --author-dark-overlay-up: rgba(17,19,23,0.55);
+                --author-dark-overlay-down: rgba(17,19,23,0.85);
+                --author-light-overlay-up: rgba(244,245,246,0.55);
+                --author-light-overlay-down: rgba(244,245,246,0.85);
+                --subscribe-dark-overlay-up: rgba(17,19,23,0.45);
+                --subscribe-dark-overlay-down: rgba(17,19,23,0.45);
+                --subscribe-light-overlay-up: rgba(244,245,246,0.45);
+                --subscribe-light-overlay-down: rgba(244,245,246,0.45);
+            }
+            
+            .dark .overlay.overlay-post:before {
+                background: linear-gradient(rgba(17,19,23,.65), #111317) !important;
+            }
+            
+            a.anchor {
+                display: block;
+                position: relative;
+                top: -80px;
+                visibility: hidden; 
+            }
+            
+            article h1, 
+            article h2, 
+            article h3 {
+                scroll-margin-top: 115px;
+            }
+        </style>
+
+        <script>
+            const currentColor = localStorage.getItem('heimdall-color');
+            if (currentColor === null || currentColor === 'light') {
+                localStorage.setItem('heimdall-color', 'dark');
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+
     </head>
     <body class="{{body_class}}">
 
@@ -45,9 +90,10 @@
 
         {{{block "index-scripts"}}}
         {{{block "post-scripts"}}}
+        
         <script>
             var SEARCH_API_KEY = "1f3f3d6547aaa2bd6ea60439ac";
-        	var SEARCH_API_URL = "https://anothersupersite.com";
+            var SEARCH_API_URL = "https://anothersupersite.com";
         </script>
         <script src="{{asset "built/js/search.js"}}"></script>
         <script src="{{asset "built/js/main.js"}}"></script>
