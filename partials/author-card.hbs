@@ -1,0 +1,17 @@
+<div class="shadow-md overlay {{#if cover_image}}overlay-author{{else}}bg-white dark:bg-black overlay-subscribe background-pattern{{/if}} h-full p-8 overflow-hidden relative hover:shadow-3xl transition-all flex items-center rounded-md background" {{#if cover_image}}style="background-image: url({{cover_image}});"{{/if}}>
+    <a href="{{url}}" class="group block">
+        <div class="w-full flex items-center">
+            {{#if profile_image}}<img src="{{profile_image}}" class="object-cover transition-all shadow-md group-hover:shadow-2xl fit-cover w-20 h-20 rounded-full" alt="{{name}}" />{{/if}}
+            <div class="{{#if profile_image}}ml-6{{/if}}">
+                <h5 class="font-sans group-hover:text-primary text-black dark:text-white transition-colors">{{name}}</h5>
+                {{#if location}}
+                    <p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex items-center">
+                        <span class="text-primary">{{> "icons/marker" size="w-4 h-4" }}</span>
+                        <span class="ml-2">{{location}}</span>
+                    </p>
+                {{/if}}
+            </div>
+        </div>
+        {{#if bio}}<p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex mt-4 line-clamp-3">{{bio}}</p>{{/if}}
+    </a>
+</div>

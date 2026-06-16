@@ -1,0 +1,64 @@
+<section class="fixed inset-0 z-50 overflow-auto" id="search-panel">
+    <div class="inset-0 fixed overlay overlay-post transition-all background-pattern bg-white-1 dark:bg-black-1 z-10"></div>
+    <div class="container px-4 lg:px-8 py-8 sm:py-12 z-20 relative">
+        <button aria-label="Close Search Panel" class="search-btn flex mb-4 sm:mb-8 items-center text-primary hover:text-black dark:hover:text-white font-medium text-sm">
+            <span class="mr-4">{{> "icons/left" }}</span>
+            <span class="font-sans font-bold uppercase text-xs sm:text-sm">{{t "Back"}}</span>
+        </button>
+        <form onsubmit="event.preventDefault();">
+            <h3 class="text-black dark:text-white transition-colors">{{t "Search Posts"}}</h3>
+            <p class="text-gray-700 dark:text-gray-300 font-medium text-sm">{{t "Search as you type"}}</p>
+            <div class="relative">
+                <input autocomplete="off" class="w-full my-6 input-lg" placeholder="{{t "Search for posts..."}}" id="search-input" />
+                <span id="search-loading" class="text-primary animate-spin fill-current feedback feedback-loading absolute right-8 top-11 mt-0.5 hidden">{{> "icons/loading"}}</span>
+            </div>
+            <div class="block flex items-start sm:items-center justify-between flex-wrap">
+                <div class="block sm:flex sm:items-center sm:space-x-8">
+                    <span class="flex items-center">
+                        <code class="shadow-md border border-black border-opacity-5 dark:border-white dark:border-opacity-10 outline-none mr-2 py-1.5 px-2 text-xs sm:text-sm leading-none font-bold rounded-md dark:bg-black bg-white text-primary">ESC</code>
+                        <span class="text-gray-700 dark:text-gray-300 font-medium text-xs sm:text-sm">{{t "Exit Search"}}</span>
+                    </span>
+                    <span class="flex items-center mt-2 sm:mt-0">
+                        <code class="shadow-md border border-black border-opacity-5 dark:border-white dark:border-opacity-10 outline-none mr-2 py-1.5 px-2 text-xs sm:text-sm leading-none font-bold rounded-md dark:bg-black bg-white text-primary">Enter</code>
+                        <span class="text-gray-700 dark:text-gray-300 font-medium text-xs sm:text-sm">{{t "Select First Result"}}</span>
+                    </span>
+                </div>
+                <span id="search-results-count-wrapper" class="text-xs sm:text-sm mt-2 sm:mt-0 hidden text-gray-700 dark:text-gray-300 font-medium">
+                    {{t "Results found:"}}
+                    <span id="search-results-count" class="text-primary font-bold"></span>
+                </span>
+            </div>
+        </form>
+        <div id="search-suggestions" class="mt-12 sm:mt-16 gap-0 sm:gap-12 lg:gap-24 grid grid-cols-2">
+            <div class="col-span-2 sm:col-span-1 md:col-span-2 lg:col-span-1">
+                <h4 class="text-black dark:text-white transition-colors">{{t "Suggested Authors"}}</h4>
+                <div class="grid gap-10 grid-cols-2 justify-items-stretch mt-8 lg:mt-12">
+                    {{#get "authors" limit="4" include="count.posts"}}
+                        {{#foreach authors}}
+                            <div class="col-span-2 xl:col-span-1">
+                                {{> "search-author-preview" }}
+                            </div>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+            <div class="mt-12 sm:mt-0 lg:mt-0 col-span-2 sm:col-span-1 md:col-span-2 lg:col-span-1">
+                <h4 class="text-black dark:text-white transition-colors">{{t "Suggested Tags"}}</h4>
+                <div class="grid gap-10 grid-cols-2 justify-items-stretch mt-8 lg:mt-12">
+                    {{#get "tags" limit="4" include="count.posts"}}
+                        {{#foreach tags}}
+                            <div class="col-span-2 xl:col-span-1">
+                                {{> "search-tag-preview" }}
+                            </div>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </div>
+        <div id="search-results" class="hidden mt-8 space-y-4 divide-y divide-black divide-opacity-5 dark:divide-white dark:divide-opacity-10"></div>
+        <div id="search-empty" class="hidden mt-12">
+            <h3 class="text-black dark:text-white transition-colors">{{t "Oops, looks like there are no results"}}</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300 font-medium text-sm">{{t "Try with different keywords"}}</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,54 @@
+{{#get "posts" filter="visibility:-public" limit="4" include="tags,authors"}}
+<div class="relative">
+    <div class="background-pattern bg-white-1 dark:bg-black-1 inset-0 transition-all absolute overlay overlay-post"></div>
+     <div class="container mx-auto px-4 sm:px-8 relative pt-16 lg:pt-36">
+        <div class="grid grid-cols-12 lg:gap-12 xl:gap-24 relative z-10 items-center">
+            {{#foreach posts visibility="all"}}
+                {{#if @first}}
+                    <article class="post-card text-center md:text-left col-span-12 lg:col-span-6 order-last lg:order-first">
+                        <div class="flex justify-center md:justify-start items-center mb-8 lg:mb-12">
+                            <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                                {{> "icons/author" size="h-4 w-4" }}
+                            </div>
+                            <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                                {{t "Member's Selection"}}
+                            </span>
+                        </div>
+                        <h2 class="text-black dark:text-white transition-colors mb-4 lg:mb-8">{{title}}</h2>
+                        <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md mb-8">{{excerpt}}</p>
+                        {{#primary_author}}
+                            <a href="{{url}}" class="group items-center justify-center md:justify-start flex">
+                                {{#if profile_image}}<div class="h-8 w-8 background rounded-full mr-3" style="background-image: url({{profile_image}});"></div>{{/if}}
+                                <span class="text-black dark:text-white text-xs transition-colors">
+                                    <span class="font-serif italic" style="font-size: 10px; margin-right: 2px;">{{t "by"}}</span>
+                                    <span class="group-hover:text-primary transition-all font-sans font-bold">{{name}}</span>
+                                </span>
+                            </a>
+                        {{/primary_author}}
+                        <a href="{{url}}" class="block mt-8 lg:mt-12 outline-link outline-link-primary">
+                            {{t "View More"}}
+                            <span>{{> "icons/next"}}</span>
+                        </a>
+                    </article>
+                    <div class="col-span-12 mb-8 lg:mb-0 lg:col-span-6 flex items-center order-first lg:order-last">
+                        <div class="transition-all shadow-md group-hover:shadow-2xl h-52 md:h-72 lg:h-100 w-full rounded-md {{#if feature_image}}background{{else}}background-pattern{{/if}}" style="flex: 0 0 auto;{{#if feature_image}}background-image: url({{feature_image}});{{/if}}"></div>
+                    </div>
+                {{/if}}
+            {{/foreach}}
+        </div>
+        <div class="mt-16 lg:mt-24 grid gap-0 space-y-8 md:space-y-0 md:gap-10 grid-cols-12">
+            {{#foreach posts from="2" visibility="all"}}
+                <div class="col-span-12 lg:col-span-4">
+                    <div class="h-72 lg:h-96 xl:h-72">{{> "post-card"}}</div>
+                </div>
+            {{/foreach}}
+        </div>
+        {{^if @member}}
+            <p class="text-center mt-8 lg:mt-12 text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                {{t "Don't have an account yet?"}}
+                <a href="{{@site.url}}/signup" class="text-primary font-bold hover:text-black dark:hover:text-white">{{t "Sign up"}}</a>
+            </p>
+        {{/if}}
+    </div>
+</div>
+{{/get}}

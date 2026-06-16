@@ -1,0 +1,8 @@
+{{#if next}}
+    <div class="mt-14 flex items-center justify-center" id="pagination-wrapper">
+        <button aria-label="Load More" id="load-more" type="button" class="w-12 h-12 rounded-full bg-primary shadow-md hover:shadow-2xl hover:bg-white hover:text-primary text-white flex items-center justify-center">
+            <span class="arrow-icon">{{> "icons/down-narrow" size="w-5 h-5" }}</span>
+            <span class="fill-current animate-spin loading-icon">{{> "icons/loading" size="w-5 h-5"}}</span>
+        </button>
+    </div>
+{{/if}}

@@ -1,0 +1,31 @@
+<div class="prose no-access dark:prose-dark lg:prose-xl border-t border-black border-opacity-5 dark:border-white dark:border-opacity-10 pt-12 mt-12">
+    {{{html}}}
+</div> 
+<div class="post-subscribe-cta overlay text-center shadow-sm px-8 py-16 md:px-16 lg:px-8 bg-white dark:bg-black overlay-subscribe overflow-hidden relative transition-all rounded-md background-pattern">
+    <span class="w-8 h-8 mb-8 mx-auto flex-shrink-0 rounded-full flex items-center bg-primary justify-center text-white shadow-md">
+        {{> "icons/lock" size="w-4 h-4" }}
+    </span>
+    <div class="w-full lg:w-4/5 block mx-auto">
+        {{#if @member}}
+            <h4 class="text-black dark:text-white">
+                {{t "This post is for paying subscribers only"}}
+            </h4>
+            <p class="text-gray-400 font-medium transition-all text-sm mt-2">
+                {{t "You don't have access to this post at the moment, but if you upgrade your account you'll be able to see the whole post, as well as all the other posts in the archive! Subscribing only takes a few seconds and will give you immediate access."}}
+            </p>
+            <div class="mt-16">
+                {{> "pricing-table" }}
+            </div>
+        {{else}}
+            <h4 class="text-black dark:text-white">
+                {{t "This post is for subscribers only"}}
+            </h4>
+            <p class="text-gray-400 font-medium transition-all text-sm mt-2">
+                {{t "You don't have access to this post at the moment, but if you upgrade your account you'll be able to see the whole post, as well as all the other posts in the archive! Subscribing only takes a few seconds and will give you immediate access."}}
+            </p>
+            <div class="mt-8">
+                {{> "subscribe-form" }}
+            </div>
+        {{/if}}  
+    </div>
+</div>

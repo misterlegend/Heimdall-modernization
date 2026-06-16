@@ -1,0 +1,10 @@
+<a href="{{url}}" class="group overflow-hidden sm:p-4 col-span-6 md:col-span-3 shadow-md hover:shadow-3xl transition-all rounded-md flex h-full bg-white dark:bg-black">
+    <div class="w-2/5 rounded-r-none rounded-l-md sm:rounded-md {{#if feature_image}}background{{else}}background-pattern bg-white-1 dark:bg-black-1{{/if}}" {{#if feature_image}}style="background-image: url({{feature_image}});"{{/if}}></div>
+    <div class="flex items-center w-3/5 px-6 sm:px-8 py-8 md:py-4">
+        <div class="block">
+            <h6 class="text-black dark:text-white line-clamp-1 font-sans group-hover:text-primary transition-colors">{{name}}</h6>
+            <p class="text-primary font-sans text-white font-medium text-sm">{{plural count.posts empty=(t "No posts") singular=(t "% post") plural=(t "% posts")}}</p>
+            {{#if description}}<p class="text-gray-500 text-sm mt-3 font-medium line-clamp-2 text-xs">{{description}}</p>{{/if}}
+        </div>
+    </div>
+</a>

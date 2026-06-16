@@ -1,0 +1,59 @@
+{
+    "name": "heimdall",
+    "version": "1.0.0",
+    "description": "A Ghost Template",
+    "repository": "https://github.com/xaes-dev/heimdall",
+    "scripts": {
+        "dev": "gulp",
+        "zip": "gulp zip",
+        "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|css|md|html)\""
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "keywords": [
+        "ghost-theme"
+    ],
+    "config": {
+        "posts_per_page": 12
+    },
+    "engines": {
+        "ghost": ">=4.0.0",
+        "ghost-api": "v4",
+        "node": "^14.13.1"
+    },
+    "author": {
+        "name": "Diego Balmaceda",
+        "email": "diego@xaes.dev"
+    },
+    "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^4.0.3",
+        "@tailwindcss/line-clamp": "^0.2.2",
+        "@tailwindcss/typography": "^0.4.1",
+        "autoprefixer": "^10.3.7",
+        "beeper": "^2.1.0",
+        "cssnano": "^5.0.8",
+        "gulp": "^4.0.2",
+        "gulp-concat": "^2.6.1",
+        "gulp-livereload": "^4.0.2",
+        "gulp-postcss": "^9.0.1",
+        "gulp-uglify": "^3.0.2",
+        "gulp-zip": "^5.1.0",
+        "postcss": "^8.3.9",
+        "postcss-custom-properties": "^12.0.0",
+        "postcss-easy-import": "^3.0.0",
+        "prettier": "^2.4.1",
+        "pump": "^3.0.0",
+        "tailwindcss": "^2.2.17"
+    },
+    "dependencies": {}
+}

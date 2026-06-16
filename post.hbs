@@ -1,0 +1,124 @@
+{{!< default}}
+
+{{#contentFor "post-styles"}}
+    <link href="{{asset "built/css/lightbox.css"}}" rel="stylesheet" type="text/css" />
+{{/contentFor}}
+
+{{#post}}
+    <div class="{{#if feature_image}}background{{else}}background-pattern bg-white-1 dark:bg-black-1{{/if}} inset-0 absolute overlay overlay-post" {{#if feature_image}}style="background-image: url({{feature_image}});"{{/if}}></div>
+    <div class="container article-wrapper px-4 sm:px-8 relative z-10 pt-16 lg:pt-0">
+        <div class="grid grid-cols-12 gap-0 xl:gap-24">
+            <article class="col-span-12 xl:col-span-8">
+                <header>
+                    {{#primary_author}}
+                        <a href="{{url}}" class="group inline-flex items-center">
+                            {{#if profile_image}}
+                                <div class="h-8 w-8 background rounded-full mr-3" style="background-image: url({{profile_image}});"></div>
+                            {{/if}}
+                            <span class="text-black dark:text-white text-xs transition-colors">
+                                <span class="font-serif italic" style="font-size: 10px; margin-right: 2px;">{{t "by"}}</span>
+                                <span class="group-hover:text-primary transition-all font-sans font-bold">{{name}}</span>
+                            </span>
+                        </a>
+                    {{/primary_author}}
+                    <h1 class="text-black dark:text-white transition-colors my-8 md:my-10">{{title}}</h1>
+                    <div class="w-full block xl:flex xl:items-center xl:justify-between">
+                        <div class="block lg:flex items-center space-x-0 xl:space-x-8 lg:justify-between">
+                            <div class="tags-wrapper flex items-center text-sm lg:text-base">
+                                <span>{{> "icons/tag"}}</span>
+                                {{tags limit="3" separator=", "}}
+                            </div>
+                            <span class="flex items-center xl:mt-0 mt-4 text-sm lg:text-base">
+                                <span class="fill-current text-primary mr-4">{{> "icons/time"}} </span>
+                                <time datetime="{{published_at}}" class="font-medium text-gray-700 dark:text-gray-300 transition-colors">{{date format="DD MMM YYYY"}}</time>
+                            </span>
+                        </div>
+                        {{> "share" }}
+                    </div>
+                </header>
+                {{#if access}}
+                    <div class="prose dark:prose-dark lg:prose-lg xl:prose-xl border-t border-black border-opacity-5 dark:border-white dark:border-opacity-10 pt-12 mt-12">
+                        {{{content}}}
+                    </div>
+                {{else}}
+                    {{> "subscribe-post-cta" }}
+                {{/if}}
+                <div class="grid grid-cols-2 gap-4 xl:gap-12 mt-16">
+                    {{#next_post}}
+                        <div class="col-span-2 md:col-span-1 xl:col-span-1 md:order-3 xl:order-1">
+                            <div class="h-72 sm:h-96 xl:h-80">
+                                {{> "post-card" next="true"}}
+                            </div>
+                        </div>
+                    {{/next_post}}
+                    {{#prev_post}}
+                        <div class="col-span-2 md:col-span-1 xl:col-span-1">
+                            <div class="h-72 sm:h-96 xl:h-80">
+                                {{> "post-card" prev="true"}}
+                            </div>
+                        </div>
+                    {{/prev_post}}
+                </div>
+                {{! Comments (Disqus) - Go to partials/comments.hbs to view this partial. Remove the "!" to activate this partial}}
+                {{> "comments" shortname="anothersupersite" }}
+            </article>
+            <aside class="col-span-12 xl:col-span-4 mt-12 xl:mt-0">
+                <div class="space-y-12">
+                    <div>
+                        <div class="flex items-center mb-8">
+                            <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                                {{> "icons/author" size="h-4 w-4" }}
+                            </div>
+                            <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                                {{t "About the authors"}}
+                            </span>
+                        </div>
+                        {{> "authors-card" }}
+                    </div>
+                    {{#get "posts" limit="2" filter="featured:true" include="tags,authors"}}
+                        <div>
+                            <div class="flex items-center mb-8">
+                                <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                                    {{> "icons/star" size="h-4 w-4" }}
+                                </div>
+                                <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                                    {{t "Featured Posts"}}
+                                </span>
+                            </div>
+                                <div class="grid grid-cols-2 gap-4 xl:gap-12">
+                                    {{#foreach posts visibility="all"}}
+                                        <div class="col-span-2 md:col-span-1 xl:col-span-2">
+                                            <div class="h-72 md:h-96 lg:h-72">{{> "post-card"}}</div>
+                                        </div>
+                                    {{/foreach}}
+                                </div>
+                        </div>
+                    {{/get}}
+                    {{#get "posts" filter="visibility:-public" limit="2" include="tags,authors"}}
+                        <div>
+                            <div class="flex items-center mb-8">
+                                <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                                    {{> "icons/author" size="h-4 w-4" }}
+                                </div>
+                                <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                                    {{t "Member's Selection"}}
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 xl:gap-12">
+                                {{#foreach posts visibility="all"}}
+                                    <div class="col-span-2 md:col-span-1 xl:col-span-2">
+                                        <div class="h-72">{{> "post-card"}}</div>
+                                    </div>
+                                {{/foreach}}
+                            </div>
+                        </div>
+                    {{/get}}
+                </div>
+            </aside>
+        </div>
+    </div>
+{{/post}}
+
+{{#contentFor "post-scripts"}}
+    <script src="{{asset "built/js/lightbox.js"}}"></script>
+{{/contentFor}}

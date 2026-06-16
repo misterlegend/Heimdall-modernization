@@ -1,0 +1,21 @@
+{{!< default}}
+
+<div class="inset-0 absolute overlay overlay-post transition-all {{^if post.feature_image}}background-pattern bg-white-1 dark:bg-black-1{{else}}background{{/if}}" {{#if post.feature_image}}style="background-image: url({{post.feature_image}});"{{/if}}></div>
+<article class="container article-wrapper relative z-10 px-4 sm:px-8 pt-16 lg:pt-0">
+    <header>
+        <div class="notch"></div>
+        <h1 class="text-black dark:text-white transition-colors mb-8">{{post.title}}</h1>
+    </header>
+    <div class="prose dark:prose-dark lg:prose-xl">
+        {{{post.html}}}
+    </div>
+    <div class="grid space-y-10 md:space-y-0 gap-0 md:gap-10 grid-cols-12 justify-items-stretch mt-12">
+        {{#get "authors" limit="all" include="count.posts"}}
+            {{#foreach authors}}
+                <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-4">
+                    {{> "author-card" }}
+                </div>
+            {{/foreach}}
+        {{/get}}
+    </div>
+</article>

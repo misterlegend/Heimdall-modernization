@@ -1,0 +1,62 @@
+<article class="flex w-full h-full relative flex-col post-card rounded-md">
+    <div class="flex items-center justify-between absolute top-8 right-8 left-8 z-20">
+        {{#primary_author}}
+            <a href="{{url}}" class="group flex items-center">
+                {{#if profile_image}}<div class="flex-shrink-0 h-8 w-8 background rounded-full mr-3" {{#if profile_image}}style="background-image: url({{profile_image}});"{{/if}}></div>{{/if}}
+                <span class="text-white text-xs line-clamp-1">
+                    <span class="font-serif italic" style="font-size: 10px; margin-right: 2px;">{{t "by"}}</span>
+                    <span class="group-hover:text-primary transition-all font-sans font-bold">{{name}}</span>
+                </span>
+            </a>
+        {{/primary_author}}
+        {{^if access}}
+            {{#has visibility="members"}}
+                <span class="w-8 h-8 flex-shrink-0 rounded-full flex items-center bg-primary justify-center ml-2 text-white shadow-md">
+                    {{> "icons/author" size="w-4 h-4" }}
+                </span>
+            {{/has}}
+            {{#has visibility="paid"}}
+                <span class="w-8 h-8 flex-shrink-0 rounded-full flex items-center bg-primary justify-center ml-2 text-white shadow-md">
+                    {{> "icons/lock" size="w-4 h-4" }}
+                </span>
+            {{/has}}
+        {{/if}}
+    </div>
+    <div class="post-image group overlay overflow-hidden shadow-md hover:shadow-3xl transition-all relative flex-initial rounded-md h-full {{#if feature_image}}background overlay-black{{else}}overlay-subscribe background-pattern bg-black-1{{/if}}" {{#if feature_image}}style="background-image: url({{feature_image}});"{{/if}}>
+        <div class="h-full w-full backdrop-filter backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"></div>
+        <div class="p-8 absolute bottom-0 right-0 left-0 flex-auto">
+            <div class="transform-gpu transition-all {{#if excerpt}}group-hover:-translate-y-12{{/if}}">
+                <div class="flex items-center">
+                    {{#if next}}
+                        <span class="font-sans mr-4 flex items-center font-bold uppercase text-xs text-white">
+                            {{t "Next Post"}}
+                            <span class="ml-3">{{> "icons/next" size="w-4 h-4"}}</span>
+                        </span>
+                        {{else if prev}}
+                            <span class="font-sans mr-4 flex items-center font-bold uppercase text-xs text-white">
+                                <span class="mr-3">{{> "icons/prev" size="w-4 h-4"}}</span>
+                                {{t "Previous Post"}}
+                            </span>
+                        {{else}}
+                        {{#primary_tag}}
+                            <a href="{{url}}" class="font-sans mr-4 font-bold uppercase text-xs text-white hover:text-primary">
+                                {{name}}
+                            </a>
+                        {{/primary_tag}}
+                        <time class="text-gray-400 font-sans font-medium text-xs" datetime="{{date format='YYYY-MM-DD'}}">
+                            {{date format="DD MMM"}}
+                        </time>
+                    {{/if}}
+                </div>
+                <h6>
+                    <a href="{{url}}" class="line-clamp-3 font-serif font-bold mt-2 block text-xl text-white block hover:text-primary">{{title}}</a>
+                </h6>
+            </div>
+            {{#if excerpt}}
+                <p class="text-gray-400 absolute bottom-8 right-8 left-8 transform-gpu translate-y-full group-hover:-translate-y-0 opacity-0 font-medium group-hover:opacity-100 transition-all line-clamp-2 text-sm">
+                    {{excerpt}}
+                </p>
+            {{/if}}
+        </div>
+    </div>
+</article>

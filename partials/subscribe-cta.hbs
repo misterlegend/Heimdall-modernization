@@ -1,0 +1,19 @@
+{{^if @member}}
+    <section class="container px-4 sm:px-8">
+        <div class="overlay shadow-sm px-8 py-16 sm:p-16 bg-white dark:bg-black overlay-subscribe overflow-hidden relative transition-all rounded-md background-pattern">
+            <div class="grid grid-cols-2 xl:gap-16 items-center text-center xl:text-left">
+                <div class="col-span-2 xl:col-span-1 mb-8 xl:mb-0">
+                    <h4 class="text-black dark:text-white">
+                        {{t "Subscribe to our newsletter"}}
+                    </h4>
+                    <p class="text-gray-400 font-medium transition-all text-sm mt-2">
+                        {{t "Receive the latests news, curated posts and highlights from us. We'll never spam, we promise."}}
+                    </p>
+                </div>
+                <div class="col-span-2 xl:col-span-1">
+                    {{> "subscribe-form" }}
+                </div>
+            </div>
+        </div>
+    </section>
+{{/if}}

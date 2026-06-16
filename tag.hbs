@@ -1,0 +1,28 @@
+{{!< default}}
+
+<div class="inset-0 absolute overlay overlay-post transition-all {{^if tag.feature_image}}background-pattern bg-white-1 dark:bg-black-1{{else}}background{{/if}}" {{#if tag.feature_image}}style="background-image: url({{tag.feature_image}});"{{/if}}></div>
+<div class="container article-wrapper relative z-10">
+    <header class="px-4 sm:px-8 pt-16 lg:pt-0 mb-16 sm:mb-24">
+        <div class="flex items-center mb-8">
+            <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                {{> "icons/tag" size="h-4 w-4" }}
+            </div>
+            {{#tag}}
+                <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                    {{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}
+                </span>
+            {{/tag}}
+        </div>
+        <h1 class="text-black dark:text-white transition-colors mb-4">{{tag.name}}</h1>
+        {{#if tag.description}}
+            <p class="font-medium text-gray-700 dark:text-gray-300 transition-colors">{{tag.description}}</p>
+        {{/if}}
+    </header>
+    <div class="post-loop-wrapper container space-y-10 md:space-y-0 px-4 sm:px-8 grid gap-0 md:gap-10 grid-cols-12">
+        {{#foreach posts visibility="all"}}
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 h-72 sm:h-96 xl:h-80">
+                {{> "post-card"}}
+            </div>
+        {{/foreach}}
+    </div>
+</div>

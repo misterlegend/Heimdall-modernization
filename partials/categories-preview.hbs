@@ -1,0 +1,18 @@
+{{#get "tags" limit=maxTags include="count.posts" order="count.posts desc"}}
+    <section>
+        <div class="container mx-auto px-4 sm:px-8 grid grid-cols-12 xl:gap-24">
+            <div class="col-span-12 xl:col-span-8 order-last xl:order-first grid grid-cols-6 gap-10">
+                {{#foreach tags}}
+                    {{> "tag-card" }}
+                {{/foreach}}
+            </div>
+            <div class="xl:mb-0 mb-12 col-span-12 xl:col-span-4 order-first xl:order-last flex items-center">
+                <div>
+                    <span class="shadow-md hover:shadow-2xl mb-8 h-9 w-9 inline-flex items-center justify-center rounded-full bg-primary text-white">{{> "icons/tag" size="h-5 w-5" }}</span>
+                    <h3 class="text-black dark:text-white mb-4 transition-colors">{{t "Popular Categories"}}</h3>
+                    <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">{{t "We have collected our most popular categories for you. Check out these popular topics!"}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{{/get}}

@@ -1,0 +1,33 @@
+<footer class="bg-white dark:bg-black transition-all z-30 relative">
+    <div class="py-16 px-4 sm:px-8 container">
+        <div class="block text-center lg:flex lg:text-left lg:justify-between lg:items-center">
+            {{#if @site.logo}}
+                {{> "logo"}}
+            {{else}}
+                <a href="{{@site.url}}" class="font-bold text-dark dark:text-white hover:text-primary dark:hover:text-primary font-sans text-2xl">
+                    {{@site.title}}
+                </a>
+            {{/if}}
+            <div class="mt-4 sm:mt-8 -mx-4 lg:mt-0 flex-wrap flex items-center justify-center lg:justify-end social-icons">
+                {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" aria-label="Facebook Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/facebook"}}</a>{{/if}}
+                {{#if @site.twitter}}<a href="{{twitter_url @site.twitter}}" aria-label="Twitter Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/twitter"}}</a>{{/if}}
+                <a href="#" aria-label="Youtube Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/youtube"}}</a>
+                <a href="#" aria-label="Instagram Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/instagram"}}</a>
+                <a href="#" aria-label="Linkedin Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/linkedin"}}</a>
+                <a href="#" aria-label="Pinterest Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/pinterest"}}</a>
+                <a href="#" aria-label="Twitch Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/twitch"}}</a>
+                <a href="#" aria-label="VK Profile" target="_blank" rel="noopener" class="px-4 pt-4 sm:pt-0">{{> "icons/vk"}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-black border-opacity-5 dark:border-white dark:border-opacity-10 transition-colors">
+        <div class="py-4 px-8 container block text-center lg:text-left lg:flex justify-between items-center">
+            {{#if @site.secondary_navigation}}
+                <nav class="-mx-4">
+                    {{navigation type="secondary"}}
+                </nav>
+            {{/if}}
+            <p class="font-medium text-gray-400 text-sm dark:text-gray-600 mt-4 lg:mt-0">{{@site.title}} &copy; {{date format="YYYY"}}. {{t "All Rights reserved."}}</p>
+        </div>
+    </div>
+</footer>

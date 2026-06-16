@@ -1,0 +1,9 @@
+<form data-members-form="signup" class="w-full with-feedback" method="post">
+    <div class="block md:flex md:items-center space-x-0 md:space-x-8">
+        <input class="w-full" placeholder="{{t 'Your email...'}}" data-members-email type="email" required/>
+        <button type="submit" class="mt-8 md:mt-0 outline-link outline-link-primary">{{t "Subscribe"}}</button>
+        <span class="mt-8 md:mt-0 text-primary animate-spin fill-current feedback feedback-loading">{{> "icons/loading"}}</span>
+    </div>
+    <p class="text-red-500 font-medium transition-all text-sm mt-8 md:mt-4 feedback feedback-error" data-members-error></p>
+    <p class="text-green-500 font-medium transition-all text-sm mt-8 md:mt-4 feedback feedback-success" data-members-success>{{t "An email has been sent to your address."}}</p>
+</form>

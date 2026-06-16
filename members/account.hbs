@@ -1,0 +1,120 @@
+{{!< ../default}}
+
+<section class="container px-4 sm:px-8 pt-36">
+
+    {{#if @member}}
+        <header class="mb-24">
+            <div class="flex items-center mb-8 justify-center md:justify-start">
+                <div class="h-8 w-8 inline-flex items-center justify-center rounded-full bg-primary text-white">
+                    {{> "icons/author"}}
+                </div>
+                <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">{{t "Your Profile"}}</span>
+            </div>
+            <div class="flex items-center flex-wrap justify-center md:justify-start">
+                {{#if @member.avatar_image}}
+                    <img src="{{@member.avatar_image}}" class="object-cover transition-all shadow-md fit-cover w-32 h-32 rounded-full mr-0 mb-8 md:mb-0 md:mr-10" />
+                {{/if}}
+                <div class="flex-shrink text-center md:text-left flex-grow w-full md:w-auto">
+                    {{#if @member.paid}}
+                            <span class="py-1 px-2 rounded-md inline-flex items-center bg-primary mb-4">
+                                <span class="font-sans font-bold uppercase text-xs text-white">{{t "Paid"}}</span>
+                            </span>
+                        {{else}}
+                            <span class="py-1 px-2 rounded-md inline-flex items-center border border-primary mb-4">
+                                <span class="font-sans font-bold uppercase text-xs text-primary">{{t "Member"}}</span>
+                            </span>
+                    {{/if}}
+                    <h3 class="text-black dark:text-white transition-colors mb-2">{{@member.name}}</h3>
+                    <p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex justify-center md:justify-start items-center">
+                        <span class="mr-2 text-primary">{{> "icons/email" size="h-4 w-4"}}</span>
+                        {{@member.email}}
+                    </p>
+                </div>
+            </div>
+        </header>
+        {{#if @member.paid}}
+            <section class="grid grid-cols-12 gap-0 lg:gap-12 xl:gap-24">
+                <div class="col-span-12 lg:col-span-4">
+                    <span class="w-8 h-8 flex-shrink-0 rounded-full flex items-center bg-primary justify-center text-white shadow-md">
+                        {{> "icons/cash" size="w-4 h-4" }}
+                    </span>
+                    <h2 class="text-black dark:text-white mb-6 mt-8">
+                        {{t "Your Subscriptions"}}
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                        {{t "Hey! You have an active {siteName} account with access to all areas. Get in touch if have any problems or need some help getting things updated, and thanks for subscribing." siteName=@site.title }}
+                    </p>
+                </div>
+                <div class="col-span-12 lg:col-span-8 space-y-16 mt-12 xl:mt-0">
+                    {{#foreach @member.subscriptions}}
+                        <div class="grid grid-cols-12 gap-0 xl:gap-16">
+                            <div class="col-span-12 xl:col-span-8 space-y-4">
+                                <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                                    {{t "Your subscription will expire on {date}. If you change your mind in the meantime you can turn auto-renew back on to continue your subscription." date=(date current_period_end format="DD MMM YYYY")}}
+                                </p>
+                                <div class="flex justify-between">
+                                    <label class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">{{t "Your Plan:" }}</label>
+                                    <span class="text-black dark:text-white">
+                                        <strong class="text-primary text-xl">{{price plan}}</strong> / {{plan.interval}}
+                                    </span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <label class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">{{t "Card:" }}</label>
+                                    <span class="text-black dark:text-white">**** **** **** {{default_payment_card_last4}}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <label class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                                        {{#if cancel_at_period_end}}
+                                            {{t "Expires:"}}
+                                        {{else}}
+                                            {{t "Next Bill Date:"}}
+                                        {{/if}}
+                                    </label>
+                                    <span class="text-black dark:text-white">{{date current_period_end format="DD MMM YYYY"}}</span>
+                                </div>
+                            </div>
+                            <div class="col-span-12 mt-12 xl:col-span-4 space-y-4 xl:mt-0 text-center">
+                                <a
+                                    class="block-button block-button-primary w-full"
+                                    href="javascript:"
+                                    data-members-edit-billing
+                                    data-members-success="{{@site.url}}/account/?stripe=billing-update-success"
+                                    data-members-cancel="{{@site.url}}/account/?stripe=billing-update-cancel"
+                                >
+                                    {{t "Edit billing info"}}
+                                </a>
+                                {{cancel_link
+                                    errorClass="text-red-500 block leading-2 font-medium transition-all text-sm mt-2"
+                                    class="block-button block-button-outline w-full"
+                                    cancelLabel=(t "Cancel Subscription")
+                                    continueLabel=(t "Continue Subscription")
+                                }}
+                            </div>
+                        </div>
+                    {{/foreach}}
+                </div>
+            </section>
+        {{else}}
+            <section class="grid grid-cols-12 gap-0 lg:gap-12 xl:gap-24 items-center">
+                <div class="col-span-12 lg:col-span-4 xl:col-span-5 text-center lg:text-left">
+                    <span class="w-8 h-8 flex-shrink-0 rounded-full flex mx-auto lg:mx-0 items-center bg-primary justify-center text-white shadow-md">
+                        {{> "icons/unlocked" size="w-4 h-4" }}
+                    </span>
+                    <h2 class="text-black dark:text-white mb-6 mt-8">
+                        {{t "Choose your subscription"}}
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                        {{t "Unlock full access to {siteName} and see the entire library of members-only content & updates" siteName=@site.title }}
+                    </p>
+                </div>
+                <div class="col-span-12 lg:col-span-8 xl:col-span-7 mt-12 xl:mt-0">
+                    <div class="post-subscribe-cta w-full overlay text-center shadow-xl px-8 py-16 xl:px-16 xl:py-24 bg-white dark:bg-black overlay-subscribe overflow-hidden relative transition-all rounded-md background-pattern">
+                        {{> "pricing-table" }}
+                    </div>
+                </div>
+            </section>
+        {{/if}}
+    {{else}}
+        <script>window.location = '{{@site.url}}/signin/';</script>
+    {{/if}}
+</section>

@@ -1,0 +1,32 @@
+{{!< ../default}}
+
+<section class="container px-4 sm:px-8 pt-36 lg:pt-60 pb-12 min-h-75 flex items-center">
+    {{#if @member}}
+        {{!-- Logged in: Redirect home --}}
+        <script>window.location = '{{@site.url}}';</script>
+    {{else}}
+        <div class="background-pattern bg-white-1 dark:bg-black-1 inset-0 absolute overlay overlay-post"></div>
+        <div class="z-10 w-full sm:w-3/5 md:4/5 xl:w-2/5 mx-auto relative text-center">
+            <header>
+                <span class="shadow-md hover:shadow-2xl mb-8 h-8 w-8 inline-flex items-center justify-center rounded-full bg-primary text-white">{{> "icons/author"}}</span>
+                <h2 class="text-black dark:text-white transition-colors">{{t "Signup to {siteTitle}" siteTitle=@site.title }}</h2>
+                {{#if @site.description}}<p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md mt-4">{{@site.description}}</p>{{/if}}
+            </header>
+            <div>
+                <form data-members-form="signup" class="with-feedback" method="post">
+                    <input class="w-full shadow-xl my-12" placeholder="{{t 'Your email...'}}" data-members-email type="email" required/>
+                    <div class="block">
+                        <button type="submit" class="outline-link outline-link-primary">{{t "Continue"}}</button>
+                    </div>
+                    <span class="mx-auto w-auto text-primary animate-spin fill-current feedback feedback-loading">{{> "icons/loading"}}</span>
+                    <p class="text-red-500 font-medium transition-all text-sm mt-8 feedback feedback-error" data-members-error></p>
+                    <p class="text-green-500 font-medium transition-all text-sm mt-8 feedback feedback-success" data-members-success>{{t "An email has been sent to your address."}}</p>
+                </form>
+                <p class="mt-12 text-gray-600 dark:text-gray-400 transition-colors font-medium text-md">
+                    {{t "Already have an account?"}}
+                    <a href="{{@site.url}}/signin" class="text-primary font-bold hover:text-black dark:hover:text-white">{{t "Sign in"}}</a>
+                </p>
+            </div>
+        </div>
+    {{/if}}
+</section>

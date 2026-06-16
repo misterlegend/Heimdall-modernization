@@ -1,0 +1,23 @@
+<div class="px-4 relative">
+    <button id="profile-dropdown-btn" aria-label="Open Profile Dropdown" type="button" class="profile-dropdown-btn shadow-md hover:shadow-2xl h-9 w-9 inline-flex items-center justify-center rounded-full bg-primary text-white">
+        {{> "icons/author"}}
+    </button>
+    <div id="profile-dropdown" class="opacity-0 pointer-events-none select-none mt-12 transition-all absolute top-full right-0 p-8 bg-transparent rounded-md shadow-2xl">
+        <div class="backdrop"></div>
+        <div class="relative z-10 divide-y divide-black space-y-2 divide-opacity-5 dark:divide-white dark:divide-opacity-10 relative inset-0 absolute">
+            <div class="flex items-center mb-4">
+                {{#if @member.avatar_image}}
+                    <img src="{{@member.avatar_image}}" class="object-cover transition-all shadow-md fit-cover w-12 h-12 rounded-full mr-5" />
+                {{/if}}
+                <div class="flex-shrink">
+                    <h6 class="text-black dark:text-white transition-colors text-md line-clamp-1">{{@member.name}}</h6>
+                    <p class="text-gray-700 dark:text-gray-300 font-medium text-xs flex items-center line-clamp-1">
+                        {{@member.email}}
+                    </p>
+                </div>
+            </div>
+            <a href="{{@site.url}}/account/" class="text-sm w-full block pt-2 text-black dark:text-white hover:text-primary dark:hover:text-primary font-bold">{{t "My Account"}}</a>
+            <a href="#signout" data-members-signout class="text-sm w-full block pt-2 text-black dark:text-white hover:text-primary dark:hover:text-primary font-bold">{{t "Logout"}}</a>
+        </div>
+    </div>
+</div>

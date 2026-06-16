@@ -1,0 +1,34 @@
+<div class="shadow-md overlay p-8 overflow-hidden relative hover:shadow-3xl transition-all rounded-md {{#if primary_author.cover_image}}background overlay-author{{else}}bg-white dark:bg-black overlay-subscribe background-pattern{{/if}}" {{#if primary_author.cover_image}}style="background-image: url({{primary_author.cover_image}});"{{/if}}>
+    <a href="{{primary_author.url}}" class="group block">
+        <div class="w-full flex items-center">
+            {{#if primary_author.profile_image}}
+                <img src="{{primary_author.profile_image}}" class="object-cover transition-all shadow-md group-hover:shadow-2xl fit-cover w-20 h-20 rounded-full" alt="{{primary_author.name}}" />
+            {{/if}}
+            <div {{#if primary_author.cover_image}}class="ml-6"{{/if}}>
+                <h5 class="font-sans group-hover:text-primary text-black dark:text-white transition-colors">{{primary_author.name}}</h5>
+                {{#if primary_author.location}}
+                    <p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex items-center">
+                        <span class="text-primary">{{> "icons/marker" size="w-4 h-4" }}</span>
+                        <span class="ml-2">{{primary_author.location}}</span>
+                    </p>
+                {{/if}}
+            </div>
+        </div>
+        {{#if primary_author.bio}}<p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex mt-4">{{primary_author.bio}}</p>{{/if}}
+    </a>
+    {{#has author="count:>1"}}
+        <div class="block mt-6">
+            <p class="uppercase text-primary font-sans text-xs font-bold mb-2">{{t "In Collaboration with:"}}</p>
+            <div class="divide-y divide-black divide-opacity-5 dark:divide-white dark:divide-opacity-10">
+                {{#foreach authors}}
+                    {{^if @first}}
+                        <a title="{{name}}" href="{{url}}" class="pt-2 mt-2 flex items-center text-black dark:text-white hover:text-primary dark:hover:text-primary text-sm font-medium">
+                            <div class="background h-8 w-8 rounded-full {{#if profile_image}}background{{else}}background-pattern{{/if}}" {{#if profile_image}}style="background-image: url({{profile_image}})"{{/if}}></div>
+                            <span class="ml-4">{{name}}</span>
+                        </a>
+                    {{/if}}
+                {{/foreach}}
+            </div>
+        </div>
+    {{/has}}
+</div>

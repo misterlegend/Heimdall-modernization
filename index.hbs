@@ -1,0 +1,17 @@
+{{!< default}}
+
+<div>
+    {{> "main-carousel"}}
+    {{> "members-posts"}}
+</div>
+
+{{> "post-loop"}}
+
+{{> "categories-preview" maxTags="4" }}
+
+{{> "subscribe-cta"}}
+
+{{#contentFor "index-scripts"}}
+    <script src="{{asset "built/js/embla.js"}}"></script>
+    <script src="{{asset "built/js/index.js"}}"></script>
+{{/contentFor}}

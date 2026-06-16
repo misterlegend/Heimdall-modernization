@@ -1,0 +1,15 @@
+{{#if isSecondary}}
+    {{#foreach navigation}}
+        <a class="text-white dark:hover:text-primary hover:text-primary font-medium px-4 font-medium text-gray-400 dark:text-gray-600 text-sm transition-all" href="{{url}}">{{label}}</a>
+    {{/foreach}}
+{{else}}
+    {{#if mobile}}
+        {{#foreach navigation}}
+            <a class="text-black dark:text-white transition-colors dark:hover:text-primary hover:text-primary py-4 font-bold block" href="{{url}}">{{label}}</a>
+        {{/foreach}}
+    {{else}}
+        {{#foreach navigation}}
+            <a class="text-white hover:text-primary font-bold px-6" href="{{url}}">{{label}}</a>
+        {{/foreach}}
+    {{/if}}
+{{/if}}

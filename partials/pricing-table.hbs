@@ -1,0 +1,53 @@
+{{#get "tiers" include="monthly_price,yearly_price,benefits" limit="all" as |tiers|}}
+    <div class="checkout-form">
+        {{> "pricing-selector"}}
+        <div class="checkout-box justify-content-center align-items-stretch row">
+            {{#foreach tiers}}
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="checkout-plan">
+                        <header class="checkout-plan-header">
+                            <h3>{{name}}</h3>
+                            {{#if monthly_price}}
+                                <span class="checkout-plan-monthly-price">
+                                    <strong>{{price monthly_price currency=currency}}</strong> / {{t "month"}}
+                                </span>
+                            {{/if}}
+                            {{#if yearly_price}}
+                                <span class="checkout-plan-yearly-price">
+                                    <strong>{{price yearly_price currency=currency}}</strong> / {{t "year"}}
+                                </span>
+                            {{/if}}
+                        </header>
+                        <div class="checkout-plan-content">
+                            <ul>
+                                {{#if benefits}}
+                                    {{#foreach benefits as |benefit|}}
+                                        <li>{{benefit}}</li>
+                                    {{/foreach}}
+                                {{/if}}
+                            </ul>
+                            {{#if monthly_price}}
+                                <a
+                                    class="btn btn-control btn-no-background checkout-plan-monthly-price"
+                                    href="javascript:"
+                                    data-portal="signup/{{id}}/monthly"
+                                >
+                                    {{t "Choose this plan"}}
+                                </a>
+                            {{/if}}
+                            {{#if yearly_price}}
+                                <a
+                                    class="btn btn-control btn-no-background checkout-plan-yearly-price"
+                                    href="javascript:"
+                                    data-portal="signup/{{id}}/yearly"
+                                >
+                                    {{t "Choose this plan"}}
+                                </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/foreach}}
+        </div>
+    </div>
+{{/get}}

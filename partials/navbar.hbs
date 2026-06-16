@@ -1,0 +1,59 @@
+<nav class="backdrop main-navbar transition-all fixed top-0 right-0 left-0 z-30" id="main-navbar">
+    <div class="container px-4 sm:px-8 flex h-20 sm:h-24 py-8 items-center justify-between relative z-10">
+        {{#if @site.logo}}
+            {{> "logo" }}
+        {{else}}
+            <a href="{{@site.url}}" class="font-bold text-white hover:text-primary font-sans text-2xl mr-8">{{@site.title}}</a>
+        {{/if}}
+        <div class="flex -mx-4 lg:-mx-6 items-center">
+            <div class="hidden lg:flex lg:items-center">
+                {{#if @site.navigation}}{{navigation}}{{/if}}
+                {{#if @member}}
+                    {{> "profile-dropdown" }}
+                {{else}}
+                    <a href="{{@site.url}}/signin/" class="text-white hover:text-primary font-bold px-8">{{t "Login"}}</a>
+                    <div class="px-2">
+                        <a href="https://anothersupersociety.com/" class="login-btn font-bold px-4 py-2 rounded-xl text-center shadow-md hover:shadow-2xl transition-all bg-primary text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">{{t "Forum"}}</a>
+                    </div>
+                {{/if}}
+            </div>
+            <button id="to-dark" aria-label="Dark Theme Button" class="dark:hidden px-4 lg:px-6 fill-current text-white hover:text-primary transition-all" style="display: none">
+                {{> "icons/moon"}}
+            </button>
+            <button id="to-light" aria-label="Light Theme Button" class="hidden dark:block fill-current text-white hover:text-primary transition-all px-4 lg:px-6" style="display: none">
+                {{> "icons/sun"}}
+            </button>
+            <button id="search-button" aria-label="Search Button" class="fill-current text-white hover:text-primary transition-all pr-4 pl-5 lg:px-6 lg:pl-6.5 lg:pr-6 search-btn">
+                {{> "icons/search"}}
+            </button>
+            <button id="mobile-menu-btn" aria-label="Mobile Menu" class="fill-current text-white hover:text-primary transition-all px-4 lg:px-6 block lg:hidden">
+                {{> "icons/menu"}}
+            </button>
+        </div>
+    </div>
+</nav>
+
+<nav id="mobile-menu" class="z-50 opacity-0 pointer-events-none backdrop block fixed left-0 right-0 bottom-0 top-20 sm:top-24 transition-all">
+    <div class="relative max-h-full overflow-auto z-50 container px-4 sm:px-8 pb-8 mt-8 space-y-8">
+        <div>
+            {{#if @site.navigation}}
+                <p class="font-sans font-bold uppercase text-xs text-primary mb-2">{{t "Navigation"}}</p>
+                <div class="divide-y divide-black divide-opacity-5 dark:divide-white dark:divide-opacity-10">
+                    {{navigation mobile="true"}}
+                </div>
+            {{/if}}
+        </div>
+        <div>
+            <p class="font-sans font-bold uppercase text-xs text-primary mb-2">{{t "Subscribe"}}</p>
+            <div class="divide-y divide-black divide-opacity-5 dark:divide-white dark:divide-opacity-10">
+                {{#if @member}}
+                    <a href="{{@site.url}}/account/" class="text-black dark:text-white transition-colors dark:hover:text-primary hover:text-primary py-4 font-bold block">{{t "Account"}}</a>
+                    <a href="#signout" data-members-signout class="text-black dark:text-white transition-colors dark:hover:text-primary hover:text-primary py-4 font-bold block">{{t "Logout"}}</a>
+                {{else}}
+                    <a href="{{@site.url}}/signin/" class="text-black dark:text-white transition-colors dark:hover:text-primary hover:text-primary py-4 font-bold block">{{t "Login"}}</a>
+                    <a href="https://anothersupersociety.com/" class="text-black dark:text-white transition-colors dark:hover:text-primary hover:text-primary py-4 font-bold block">{{t "Forum"}}</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</nav>

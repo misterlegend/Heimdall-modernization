@@ -1,0 +1,13 @@
+{{!< default}}
+
+<section class="text-center container px-4 sm:px-8 pt-36 lg:pt-60 pb-12 min-h-75 flex items-center">
+    <div class="background-pattern bg-white-1 dark:bg-black-1 inset-0 absolute overlay overlay-post"></div>
+    <div class="z-10 w-full sm:w-3/5 md:4/5 xl:w-2/5 mx-auto relative text-center">
+        <header>
+            <span class="shadow-md hover:shadow-2xl mb-8 h-8 w-8 inline-flex items-center justify-center rounded-full bg-primary text-white">{{> "icons/error"}}</span>
+            <h2 class="text-black dark:text-white transition-colors mb-4">{{t "Error: {code}" code=statusCode }}</h2>
+            <p class="text-gray-600 dark:text-gray-400 transition-colors font-medium text-md mb-8">{{message}}</p>
+            <a href="{{@site.url}}" class="outline-link outline-link-primary">{{t "Back"}}</a>
+        </header>
+    </div>
+</section>

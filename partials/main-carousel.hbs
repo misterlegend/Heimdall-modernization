@@ -1,0 +1,53 @@
+{{#get "posts" limit="3" filter="featured:true" include="tags,authors"}}
+	<div id="main-carousel" class="embla h-screen relative mx-auto">
+		<div class="embla__viewport cursor-move overflow-hidden h-full w-full">
+			<div class="embla__container select-none h-full flex">
+				{{#foreach posts visibility="all"}}
+					<div class="embla__slide flex w-full flex-full pt-24 pb-28 h-full overlay items-center {{#if feature_image}}background overlay-gray{{else}}background-pattern bg-black-1 overlay-subscribe{{/if}} relative overflow-hidden" {{#if feature_image}}style="background-image: url({{feature_image}})"{{/if}}>
+						<div class="embla__slide__inner w-full">
+							<div class="embla__slide__parallax absolute top-0 right-0 left-0 bottom-0 w-full text-center lg:text-left">
+								<article class="container px-4 sm:px-8 absolute transform -translate-x-2/4 -translate-y-2/4 top-1/2 left-1/2">
+									<div class="tags-wrapper flex items-center justify-center lg:justify-start">
+										<span>{{> "icons/tag"}}</span>
+										{{tags limit="3" separator=", "}}
+									</div>
+									<h2 class="text-white my-8 w-full lg:w-3/5">{{title}}</h2>
+									<a aria-label="Read {{title}}" href="{{url}}" class="outline-link outline-link-white">
+										{{t "Read More"}}
+										<span>{{> "icons/next"}}</span>
+									</a>
+								</article>
+							</div>
+						</div>
+					</div>
+				{{/foreach}}
+			</div>
+		</div>
+		<div class="embla__thumbs hidden lg:block transition-all container z-10 shadow-sm absolute bottom-0 right-0 w-full">
+			<div class="flex embla__thumbs-wrapper items-stretch bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-tl-md overflow-hidden">
+				{{#foreach posts visibility="all"}}
+					<button class="{{#has index="0"}}is-selected{{/has}} text-left flex-1 group items-center flex space-x-6 xl:space-x-8 border-t-2 transition-all p-7 cursor-pointer" data-embla-index="{{@index}}">
+						<span class="thumb-text xl:text-2xl sm:text-xl text-lg font-serif text-gray-500 transition-all">{{@number}}</span>
+						<span class="block">
+							<span class="thumb-text font-sans dark:text-white font-semibold leading-5 line-clamp-2 xl:line-clamp-1 text-base transition-all">{{title}}</span>
+							<span class="text-gray-500 xl:line-clamp-1 hidden xl:block text-sm">{{excerpt}}</span>
+						</span>
+					</button>
+				{{/foreach}}
+			</div>
+		</div>
+		<div class="absolute bottom-8 left-0 right-0">
+			<div class="container relative px-4 sm:px-8 mx-auto">
+				<button aria-label="Go To All Posts" id="go-down" class="svg-round-btn hover:text-primary hover:border-primary">
+					{{> "icons/down"}}
+				</button>
+				<div class="absolute flex right-0 pr-8 bottom-0 lg:bottom-32">
+					<button aria-label="Next Post" class="embla__next group flex items-center justify-center flex-row" id="embla__next" type="button">
+						<span class="svg-round-btn mr-0 lg:mr-6 transition-all group-hover:text-primary group-hover:border-primary">{{> "icons/right"}}</span>
+						<span class="leading-none font-sans transition-all font-semibold text-base text-white hidden lg:block group-hover:text-primary">{{t "Next"}}</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/get}}

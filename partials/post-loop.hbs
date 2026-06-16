@@ -1,0 +1,18 @@
+<div id="main-loop" class="container px-4 sm:px-8">
+    <div class="flex justify-center md:justify-start items-center mb-12">
+        <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+            {{> "icons/news" size="h-4 w-4" }}
+        </div>
+        <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+            {{t "All Our Posts"}}
+        </span>
+    </div>
+    <div class="post-loop-wrapper grid gap-0 space-y-8 md:space-y-0 md:gap-10 grid-cols-12">
+        {{#foreach posts visibility="all"}}
+            <div class="h-100 col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-4 2xl:col-span-3">
+                {{> "post-card"}}
+            </div>
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</div>

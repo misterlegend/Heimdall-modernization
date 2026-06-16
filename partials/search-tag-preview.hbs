@@ -1,0 +1,10 @@
+<a href="{{url}}" class="group w-full flex items-center">
+    <div class="transition-all mr-6 shadow-md group-hover:shadow-2xl w-20 h-20 rounded-full {{#if feature_image}}background{{else}}background-pattern{{/if}}" style="flex: 0 0 auto;{{#if feature_image}}background-image: url({{feature_image}});{{/if}}"></div>
+    <div class="flex-shrink">
+        <h6 class="text-black dark:text-white line-clamp-1 font-sans group-hover:text-primary transition-colors">{{name}}</h6>
+        <p class="text-gray-700 dark:text-gray-300 font-medium text-sm flex items-center">
+            <span class="text-primary mr-2">{{> "icons/tag" size="w-4 h-4" }}</span>
+            <span>{{plural count.posts empty=(t "No posts") singular=(t "% post") plural=(t "% posts")}}</span>
+        </p>
+    </div>
+</a>

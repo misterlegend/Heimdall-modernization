@@ -1,0 +1,61 @@
+{{!< default}}
+
+{{#author}}
+<div class="inset-0 absolute overlay overlay-post transition-all {{^if cover_image}}background-pattern bg-white-1 dark:bg-black-1{{else}}background{{/if}}" {{#if cover_image}}style="background-image: url({{cover_image}});"{{/if}}></div>
+{{/author}}
+
+<div class="container article-wrapper relative z-10">
+    {{#author}}
+        <header class="px-4 sm:px-8 pt-16 lg:pt-0 mb-16 sm:mb-24">
+            <div class="flex justify-center sm:justify-start items-center mb-8">
+                <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                    {{> "icons/author" size="h-4 w-4" }}
+                </div>
+                <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                    {{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}
+                </span>
+            </div>
+            <div class="block text-center sm:flex sm:items-center sm:text-left w-full lg:w-4/5 xl:w-1/2">
+                {{#if profile_image}}
+                    <img src="{{profile_image}}" style="flex: 0 0 8rem" class="object-cover transition-all shadow-md fit-cover w-32 h-32 rounded-full mx-auto mb-8 sm:mb-0 sm:mr-10" alt="{{name}}" />
+                {{/if}}
+                <div style="flex: 1 0 calc(100% - 8rem);">
+                    {{#if location}}
+                        <p class="text-gray-700 dark:text-gray-300 font-medium text-sm mb-4 flex justify-center sm:justify-start items-center">
+                            <span class="text-primary">{{> "icons/marker" size="w-4 h-4" }}</span>
+                            <span class="ml-2">{{location}}</span>
+                        </p>
+                    {{/if}}
+                    <h3 class="text-black dark:text-white transition-colors">{{name}}</h3>
+                    {{#if bio}}
+                        <p class="mt-4 font-medium text-gray-700 dark:text-gray-300 transition-colors">{{bio}}</p>
+                    {{/if}}
+                    <div class="flex justify-center sm:justify-start items-center space-x-4 social-icons">
+                        {{#if website}}
+                            <a aria-label="Author's Website" href="{{website}}" target="_blank" rel="noopener" class="mt-8 sm:mt-4 shadow-md hover:shadow-2xl h-10 w-10 inline-flex exclude items-center justify-center rounded-full bg-primary hover:bg-white dark:hover:bg-white text-white">
+                                {{> "icons/globe" size="h-5 w-5" }}
+                            </a>
+                        {{/if}}
+                        {{#if facebook}}
+                            <a aria-label="Facebook Profile" href="{{facebook_url}}" target="_blank" rel="noopener" class="mt-8 sm:mt-4 shadow-md hover:shadow-2xl text-sm h-10 w-10 inline-flex items-center justify-center rounded-full bg-primary hover:bg-white dark:hover:bg-white text-white">
+                                {{> "icons/facebook"}}
+                            </a>
+                        {{/if}}
+                        {{#if twitter}}
+                            <a aria-label="Twitter Profile" href="{{twitter_url}}" target="_blank" rel="noopener" class="mt-8 sm:mt-4 shadow-md hover:shadow-2xl text-sm h-10 w-10 inline-flex items-center justify-center rounded-full bg-primary hover:bg-white dark:hover:bg-white text-white">
+                                {{> "icons/twitter"}}
+                            </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </header>
+    {{/author}}
+    <div class="post-loop-wrapper container space-y-10 md:space-y-0 px-4 sm:px-8 grid gap-0 md:gap-10 grid-cols-12">
+        {{#foreach posts visibility="all"}}
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 h-72 sm:h-96 xl:h-80">
+                {{> "post-card"}}
+            </div>
+        {{/foreach}}
+    </div>
+</div>
