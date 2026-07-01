@@ -1,11 +1,10 @@
 {{!< default}}
 
+{{!-- MODIFIED: Grouped the carousel and post-loop into one container to prevent global spacing gaps --}}
 <div>
     {{> "main-carousel"}}
-    {{> "members-posts"}}
+    {{> "post-loop"}}
 </div>
-
-{{> "post-loop"}}
 
 {{> "categories-preview" maxTags="4" }}
 

@@ -18,9 +18,14 @@
                                         {{tags limit="3" separator=", "}}
                                     </div>
                                     
-                                    <h2 class="text-white my-8 w-full lg:w-3/5">{{title}}</h2>
+                                    {{!-- 3. MODIFIED: Title link with hover colors removed --}}
+                                    <h2 class="text-white my-8 w-full lg:w-3/5">
+                                        <a href="{{url}}" class="relative z-20">
+                                            {{title}}
+                                        </a>
+                                    </h2>
                                     
-                                    {{!-- 3. MODIFIED: Added 'relative z-20' to preserve hover effects on the button --}}
+                                    {{!-- 4. MODIFIED: Added 'relative z-20' to preserve hover effects on the button --}}
                                     <a aria-label="Read {{title}}" href="{{url}}" class="outline-link outline-link-white relative z-20">
                                         {{t "Read More"}}
                                         <span>{{> "icons/next"}}</span>

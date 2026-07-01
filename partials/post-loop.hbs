@@ -1,18 +1,30 @@
-<div id="main-loop" class="container px-4 sm:px-8">
-    <div class="flex justify-center md:justify-start items-center mb-12">
-        <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
-            {{> "icons/news" size="h-4 w-4" }}
-        </div>
-        <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
-            {{t "All Our Posts"}}
-        </span>
-    </div>
-    <div class="post-loop-wrapper grid gap-0 space-y-8 md:space-y-0 md:gap-10 grid-cols-12">
-        {{#foreach posts visibility="all"}}
-            <div class="h-100 col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-4 2xl:col-span-3">
-                {{> "post-card"}}
+<div class="w-full relative pt-20 pb-10">
+    
+    {{!-- MODIFIED: Swapped md:block for lg:block since we know the theme supports it --}}
+    <div class="hidden lg:block background-pattern bg-white-1 dark:bg-black-1 inset-0 transition-all absolute overlay overlay-post pointer-events-none" style="-webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);"></div>
+    
+    <div id="main-loop" class="container px-4 sm:px-8 mx-auto relative z-10">
+        
+        <div class="flex justify-center md:justify-start items-center mb-12">
+            <div class="h-8 w-8 shadow-md hover:shadow-2xl inline-flex items-center justify-center rounded-full bg-primary text-white">
+                {{> "icons/news" size="h-4 w-4" }}
             </div>
-        {{/foreach}}
+            <span class="ml-4 font-sans font-bold uppercase text-xs text-primary">
+                {{t "All Our Posts"}}
+            </span>
+        </div>
+        
+        <div class="post-loop-wrapper grid gap-0 space-y-8 md:space-y-0 md:gap-10 grid-cols-12">
+            {{#foreach posts visibility="all"}}
+                <div class="h-100 col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-4 2xl:col-span-3">
+                    {{> "post-card"}}
+                </div>
+            {{/foreach}}
+        </div>
+        
+        <div class="mt-12">
+            {{pagination}}
+        </div>
+        
     </div>
-    {{pagination}}
 </div>
